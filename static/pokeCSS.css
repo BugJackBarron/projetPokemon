@@ -1,0 +1,23 @@
+@font-face{
+font-family: pokemon;
+src: url('Pokemon Hollow.ttf');
+font-weight: bold;}
+
+
+body{
+	background-color : aquamarine;
+	
+}
+
+#banniere{
+	background-image : url('banniere.png');
+	text-align : center;
+	background-size : 100vw;
+	height : 15vw;	
+}
+
+h1{	
+	color : white;
+	font-size : 3em;
+	font-family : pokemon, arial;	
+}
