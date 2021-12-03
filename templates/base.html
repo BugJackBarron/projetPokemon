@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf8"/>
+		<link href = {{ url_for('static', filename='pokeCSS.css') }} rel = "stylesheet" type="text/css"/>
+		
+	</head>
+	<body>
+		
+		<header>
+			<a href= {{ url_for('homepage')}}>
+			<div id ="banniere">
+				<h1>{% block titre %}PokeDex{% endblock %}</h1>
+			</div>
+			</a>
+		</header>
+		
+		{% block contenu %}
+		
+		{% endblock %}
+		<footer>
+			<div class = "conteneurFlex">
+				<div class="footerGauche">
+				2021-2022
+				</div>
+				<div class="footerDroit">
+				F. Vergniaud, Lycée Auguste Pavie
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>

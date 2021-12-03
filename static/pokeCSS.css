@@ -3,9 +3,15 @@ font-family: pokemon;
 src: url('Pokemon Hollow.ttf');
 font-weight: bold;}
 
+@font-face{
+font-family: pokemonSolid;
+src: url('Pokemon Solid.ttf');
+}
+
 
 body{
 	background-color : aquamarine;
+	font-family : pokemonSolid, arial;
 	
 }
 
@@ -19,5 +25,6 @@ body{
 h1{	
 	color : white;
 	font-size : 3em;
-	font-family : pokemon, arial;	
+	font-family : pokemon, arial;
+	
 }
