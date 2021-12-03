@@ -2,9 +2,6 @@ import csv, sqlite3
 
 con = sqlite3.connect('pokemon.db')
 
-    
-
-
 with open('pokemon.csv', newline='', encoding='utf8') as csvfile:
     reader = csv.reader(csvfile)
     curseur=con.cursor()

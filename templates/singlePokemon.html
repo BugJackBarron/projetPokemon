@@ -1,9 +1,31 @@
 {% extends "base.html" %}
 
 {% block titre %}
-BIDULE
+{{nom}}
 {% endblock %}
 
 {% block contenu %}
-Machin
+<div id="pokemonDescription">
+	<div id="pokemonData">
+	<h2>{{nom}}</h2>
+	<ul>
+		<li><span class="textValue">Valeur :</span> <span class="valeur">{{ total }}</span></li>
+		<li><span class="textValue">Type 1 :</span> <span class="valeur">{{ type1 }}</span></li>
+		<li><span class="textValue">Type 2 :</span> <span class="valeur">{{ type2 }}</span></li>
+		<li><span class="textValue">Points de vie :</span> <span class="valeur">{{ hp }}</span></li>
+		<li><span class="textValue">Attaque :</span> <span class="valeur">{{ attack }}</span></li>
+		<li><span class="textValue">Défense :</span> <span class="valeur">{{ defense }}</span></li>
+		<li><span class="textValue">Attaque spéciale :</span> <span class="valeur">{{ sp_attack }}</span></li>
+		<li><span class="textValue">Défense spéciale :</span> <span class="valeur">{{ sp_defense }}</span></li>
+		<li><span class="textValue">Vitesse :</span> <span class="valeur">{{ speed }}</span></li>
+		<li><span class="textValue">Génération :</span> <span class="valeur">{{ generation }}</span></li>
+		<li><span class="textValue">Légendaire :</span> <span class="valeur">{{ legendary }}</span></li>
+		
+	</ul>
+	</div>
+	<div id = "pokemonImage">
+		<img src="https://img.pokemondb.net/artwork/large/{{nom|lower}}.jpg" title="https://pokemondb.net" alt = "Une image de {{nom|lower}}" />
+	</div>
+
+</div>
 {% endblock %}

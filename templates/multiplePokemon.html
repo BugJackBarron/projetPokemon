@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+
+{% block contenu %}
+<ul>
+{% for pokemon in listePokemon %}
+	<li>{{ pokemon[0] }} génération {{pokemon[1]}} </li>
+{% endfor %}
+</ul>
+{% endblock %}

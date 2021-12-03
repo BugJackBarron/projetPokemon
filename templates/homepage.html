@@ -1,7 +1,37 @@
 {% extends "base.html" %}
 
 {% block contenu %}
-		<div id="corps">
-			{{ typeList }}
-		</div>
+<div id="corps">
+	
+			
+	<div id="uniquePokemon">
+		<p id="warning">{{ message }} </p>
+		<form action = {{ url_for('searchUnique') }} method='post'>	
+			<label for="nom"> Entre le nom d'un Pokemon : </label>
+			<input type="text" id="nom" name="nom" required
+			size="10"/>
+			<input type="submit" value="Chercher"/>
+		</form>
+	</div>
+	<div id="searchType">
+		
+		<form action = {{ url_for('searchMultiple') }} method='post'>	
+			<label for="type1"> Sélectionne les types d'un pokemon : </label>
+			<select name="type1" id="type1" required>
+				<option value="">-- type 1 --</option>
+				{% for type in typeList %}
+					<option value="{{ type|lower }}">{{ type|lower }}</option>
+				{% endfor %}
+    		</Select>
+    		<select name="type2" id="type2" >
+				<option value="">--type 2--</option>
+				<option value="None">--type 2--</option>
+				{% for type in typeList %}
+					<option value="{{ type|lower }}">{{ type|lower }}</option>
+				{% endfor %}
+    		</Select>
+			<input type="submit" value="Chercher"/>
+		</form>
+	</div>
+</div>
 {% endblock %}
