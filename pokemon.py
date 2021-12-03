@@ -58,14 +58,14 @@ ORDER BY type1;"""
             if request.form.get('type1') :
                 type1 = request.form.get('type1')
                 req = f""" SELECT name, generation, legendary FROM Pokemon WHERE type1 = '{type1.capitalize()}'"""
-                if request.form.get('type2') :
-                    req += f"""AND type2 = '{request.form.get('type2').capitalize()}'"""
+                type2 = request.form.get('type2')
+                if type2 :
+                    req += f"""AND type2 = '{type2.capitalize()}'"""
                 req+= "ORDER BY name ASC"
-                print(req)
                 conn = sqlite3.connect('static/pokemon.db')
                 curs = conn.cursor()
                 curs.execute(req)
-                return   render_template('multiplePokemon.html', listePokemon = curs.fetchall())   
+                return   render_template('multiplePokemon.html', listePokemon = curs.fetchall(), type1 = type1, type2 = type2)   
         return 'Toto'
 
     return app

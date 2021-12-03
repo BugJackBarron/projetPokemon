@@ -2,9 +2,15 @@
 
 
 {% block contenu %}
-<ul>
-{% for pokemon in listePokemon %}
-	<li>{{ pokemon[0] }} génération {{pokemon[1]}} </li>
-{% endfor %}
-</ul>
+	{% if listePokemon|length >0 %}
+		<ul>
+		{% for pokemon in listePokemon %}
+			<li>{{ pokemon[0] }} génération {{pokemon[1]}} </li>
+		{% endfor %}
+		</ul>
+	{% else %}
+		<p class="message">
+		Il n'existe aucun Pokemon de type 1 {{type1}} {% if type2|length >0 %} et de type 2 {{type2}} {% endif %}</p>
+		</p>
+	{% endif %}
 {% endblock %}
