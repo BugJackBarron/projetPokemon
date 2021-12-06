@@ -5,31 +5,52 @@
 	
 			
 	<div id="uniquePokemon">
-		<p id="warning">{{ message }} </p>
 		<form action = {{ url_for('searchUnique') }} method='post'>	
 			<label for="nom"> Entre le nom d'un Pokemon : </label>
 			<input type="text" id="nom" name="nom" required
 			size="10"/>
 			<input type="submit" value="Chercher"/>
+			<span id="recherche_avancee" onclick="">+</span>
 		</form>
 	</div>
-	<div id="searchType">
-		
+	<div id="advancedSearchForm">
 		<form action = {{ url_for('searchMultiple') }} method='post'>	
-			<label for="type1"> Sélectionne les types d'un pokemon : </label>
-			<select name="type1" id="type1" required>
-				<option value="">-- type 1 --</option>
-				{% for type in typeList %}
-					<option value="{{ type|lower }}">{{ type|lower }}</option>
-				{% endfor %}
-    		</Select>
-    		<select name="type2" id="type2" >
-				<option value="">--type 2--</option>
-				<option value="None">--type 2--</option>
-				{% for type in typeList %}
-					<option value="{{ type|lower }}">{{ type|lower }}</option>
-				{% endfor %}
-    		</Select>
+			<div id="searchType">
+				
+				<label for="type1"> Sélectionne les types du pokemon : </label>
+				<select name="type1" id="type1" >
+					<option value="">-- type 1 --</option>
+					{% for type in typeList %}
+						<option value="{{ type|lower }}">{{ type|lower }}</option>
+					{% endfor %}
+				</Select>
+				<select name="type2" id="type2" >
+					<option value="">--type 2--</option>
+					<option value="None">--type 2--</option>
+					{% for type in typeList %}
+						<option value="{{ type|lower }}">{{ type|lower }}</option>
+					{% endfor %}
+				</Select>
+			</div>
+			<div id="searchGen">
+			
+				<label for="gen"> Sélectionne la génération du pokemon : </label>
+				<select name="gen" id="gen">
+					<option value="">-- generation --</option>
+					{% for gen in genList %}
+						<option value="{{ gen|lower }}">{{ gen|lower }}</option>
+					{% endfor %}
+				</Select>
+			</div>
+			<div id="searchLegendary">
+			
+				<label for="legendary"> Pokemon Légendaire ? </label>
+				<select name="legendary" id="legendary">
+					<option value="" selected>-- ne sait pas --</option>
+					<option value="True">Oui</option>
+					<option value="False">Non</option>
+				</Select>
+			</div>
 			<input type="submit" value="Chercher"/>
 		</form>
 	</div>

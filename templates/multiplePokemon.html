@@ -5,7 +5,7 @@
 	{% if listePokemon|length >0 %}
 		<ul>
 		{% for pokemon in listePokemon %}
-			<li>{{ pokemon[0] }} génération {{pokemon[1]}} </li>
+			<li><a href="{{ url_for('searchUnique', name= pokemon[0])}}">({{ pokemon[0] }}</a> génération {{pokemon[1]}} </li>
 		{% endfor %}
 		</ul>
 	{% else %}
