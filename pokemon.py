@@ -34,27 +34,28 @@ ORDER BY generation;"""
     def singlePokemon(name=''):        
         return render_template('singlePokemon.html', name=name)
     
+    
     @app.route('/searchUnique',methods = ['POST', 'GET'])
-    @app.route('/searchUnique/<name>')
-    def searchUnique(name="") :
-        print(f"Le nom : {name}")
-        if name =="" :
-            if request.method == 'POST' :
-                if request.form.get('nom') :
-                    pokeName = request.form['nom'].capitalize()
+    def searchUnique() :        
+        if request.method == 'POST' :
+            if request.form.get('nom') :
+                pokeName = request.form['nom']
+                
+        else :
+            if request.args.get('name') :
+                pokeName = request.args.get('name')
             else :
-                if request.args.get('name') :
-                    pokeName = request.args['name'].capitalize()
-                else :
-                    flash("Erreur dans la recherche")
-                    return redirect(url_for('homepage'))
-        else :            
-            pokeName = name        
+                flash("Erreur dans la recherche")
+                return redirect(url_for('homepage'))       
+        print(pokeName)        
         conn = sqlite3.connect('static/pokemon.db')
         curs = conn.cursor()
-        requ = f""" SELECT * FROM Pokemon WHERE name='{pokeName}'"""
+        requ = f""" SELECT * FROM Pokemon WHERE name LIKE '%{pokeName}%'"""
+        print(requ)
         curs.execute(requ)
         pokeData = curs.fetchone()
+        
+        print(pokeData)
         conn.close()
         if pokeData==None :
             flash('Pokemon Inconnu')
@@ -73,6 +74,7 @@ ORDER BY generation;"""
                                 speed = speed,
                                 generation = generation,
                                 legendary = legendary)
+    
             
             
     @app.route('/searchMultiple', methods=['GET', 'POST'])
@@ -86,9 +88,9 @@ ORDER BY generation;"""
             req = f""" SELECT name, generation, legendary FROM Pokemon WHERE """
             conditions=[]
             if request.form.get('type1') :               
-                conditions.append(f"""type1 = '{type1.capitalize()}'""")
+                conditions.append(f"""type1 = '{type1.lower()}'""")
             if request.form.get('type2') :               
-                conditions.append(f"""type2 = '{type2.capitalize()}'""")
+                conditions.append(f"""type2 = '{type2.lower()}'""")
             if request.form.get('gen') :               
                 conditions.append(f"""generation = '{gen}'""")
             if request.form.get('legendary') :               

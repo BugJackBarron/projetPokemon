@@ -29,7 +29,7 @@ with open('pokemon.csv', newline='', encoding='utf8') as csvfile:
     attack, defense,sp_attack, sp_defense, speed, generation, legendary
     ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);
         """
-        curseur.execute(req,line[1:] )
+        curseur.execute(req,[line[1].lower(), *line[2:]] )
 con.commit()
 con.close()
         
