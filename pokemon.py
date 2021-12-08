@@ -50,11 +50,10 @@ ORDER BY generation;"""
         print(pokeName)        
         conn = sqlite3.connect('static/pokemon.db')
         curs = conn.cursor()
-        requ = f""" SELECT * FROM Pokemon WHERE name LIKE '%{pokeName}%'"""
+        requ = f""" SELECT * FROM Pokemon WHERE name =  '{pokeName}'"""
         print(requ)
         curs.execute(requ)
-        pokeData = curs.fetchone()
-        
+        pokeData = curs.fetchone()        
         print(pokeData)
         conn.close()
         if pokeData==None :
@@ -82,15 +81,16 @@ ORDER BY generation;"""
         if request.method == 'POST' :
             type1 = request.form.get('type1')
             print(str(type1))
+            
             type2 = request.form.get('type2')
             gen = request.form.get('gen')
             legendary = request.form.get('legendary')
             req = f""" SELECT name, generation, legendary FROM Pokemon WHERE """
             conditions=[]
             if request.form.get('type1') :               
-                conditions.append(f"""type1 = '{type1.lower()}'""")
+                conditions.append(f"""type1 = '{type1.capitalize()}'""")
             if request.form.get('type2') :               
-                conditions.append(f"""type2 = '{type2.lower()}'""")
+                conditions.append(f"""type2 = '{type2.capitalize()}'""")
             if request.form.get('gen') :               
                 conditions.append(f"""generation = '{gen}'""")
             if request.form.get('legendary') :               
@@ -101,7 +101,9 @@ ORDER BY generation;"""
             curs = conn.cursor()
             curs.execute(req)
             listePokemon = curs.fetchall()
-            conn.close()            
+            print(listePokemon)
+            conn.close()
+            
             if  len(listePokemon) != 0 :
                 return render_template('multiplePokemon.html', listePokemon = listePokemon, type1=type1, type2=type2, gen=gen, legendary=legendary)
         flash('Aucun Pokemon ne correspond aux critères')
